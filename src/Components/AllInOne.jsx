@@ -192,7 +192,7 @@ export default function AllInOne() {
                       />
                     </svg>
                     <input
-                      value={phone} onChange={(e)=>setPhone(e.target.value)}
+                      value={phone} onChange={(e)=>{setPhone(e.target.value)}}
                       type="text"
                       placeholder="Phone"
                       className="h-[5vh] w-[38vw] sm:w-[40vw] md:w-[43vw] xl:w-[45vw] font-semibold border-2 border-white bg-slate-900 rounded pl-2 "
