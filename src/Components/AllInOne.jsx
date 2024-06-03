@@ -1,23 +1,32 @@
 import React, { useState } from "react";
 import ContactBox from "./ContactBox";
 import InitialPage from "./InitialPage";
+import FullInfo from "./FullInfo";
 
 
-export default function AllInOne() {
+export default function AllInOne({add}) {
 
     const[entry,setEntry]=useState([])
     const[name,setName]=useState()
+    const[lastName,setLastName]=useState()
     const[phone,setPhone]=useState()
+    const[email,setEmail]=useState()
+    const[address,setAddress]=useState()
     const[newForm,setNewForm]=useState("Before")
 
     function newClick(){
         entry.push({ Name:name,
-            Phone:phone
+          LastName:lastName,
+            Phone:phone,
+            Email:email,
+            Address:address
         })
         setEntry([...entry])
         setName("")
         setPhone("")
+        setNewForm("Before")
     }
+    
     
   return (
     <>
@@ -50,7 +59,7 @@ export default function AllInOne() {
       <div className="flex">
         <aside>
           <div className="h-[93vh] w-[35vw] bg-slate-900 text-white flex flex-col items-center border-r-2 border-white">
-            <div className="h-[5vh] w-[32vw] bg-slate-500 rounded-full flex items-center justify-evenly">
+            <div className="h-[5vh] w-[32vw] bg-slate-500 rounded-full flex items-center justify-evenly mb-10">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -100,20 +109,20 @@ export default function AllInOne() {
                 />
               </svg>
             </div>
-            <p className="m-[1vw]"> No Contacts Available</p>
-            <ContactBox newcontact={entry}/>
+          
+            <div onClick={()=>setNewForm("mid")}><ContactBox  newcontact={entry}/></div>
           </div>
         </aside>
         <main>
            
           <section>
-            <div className="bg-slate-900 h-[93vh] w-[64.2vw] text-black border-t-2 border-white">
+            <div className="bg-slate-900 h-[93vh] w-[64.2vw] text-black border-t-2 border-white flex flex-col justify-center items-center">
                 {newForm=="Before"&&
             <InitialPage/>
         }
 {newForm=="After"&&
               <form action="">
-                <div className="flex flex-col  justify-center items-center">
+                <div className="flex flex-col  justify-center items-center text-white">
                   <div className="h-[120px] w-[120px] bg-slate-500 rounded-full flex justify-center items-center mt-6">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -170,6 +179,7 @@ export default function AllInOne() {
                       />
                     </svg>
                     <input
+                    value={lastName} onChange={(e)=>setLastName(e.target.value)}
                       type="text"
                       placeholder="Last name"
                       className="h-[5vh]  w-[38vw] sm:w-[40vw] md:w-[43vw] xl:w-[45vw]  font-semibold border-2 border-white bg-slate-900 rounded pl-2 "
@@ -215,6 +225,7 @@ export default function AllInOne() {
                       />
                     </svg>
                     <input
+                    value={email} onChange={(e)=>setEmail(e.target.value)}
                       type="text"
                       placeholder="Email"
                       className="h-[5vh]  w-[38vw] sm:w-[40vw] md:w-[43vw] xl:w-[45vw] font-semibold border-2 border-white bg-slate-900 rounded pl-2 "
@@ -242,6 +253,7 @@ export default function AllInOne() {
                       />
                     </svg>
                     <input
+                    value={address} onChange={(e)=>setAdd}
                       type="text"
                       placeholder="Address"
                       className="h-[5vh]  w-[38vw] sm:w-[40vw] md:w-[43vw] xl:w-[45vw] font-semibold border-2 border-white bg-slate-900 rounded pl-2 "
@@ -254,6 +266,10 @@ export default function AllInOne() {
                 </div>
               </form>
               }
+              {newForm=="mid"&&
+
+              <FullInfo moreinfo={entry}/>
+            }
             </div>
           </section>
         </main>
