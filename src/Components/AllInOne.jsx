@@ -4,7 +4,7 @@ import InitialPage from "./InitialPage";
 import FullInfo from "./FullInfo";
 
 
-export default function AllInOne({add}) {
+export default function AllInOne() {
 
     const[entry,setEntry]=useState([])
     const[name,setName]=useState()
@@ -23,7 +23,10 @@ export default function AllInOne({add}) {
         })
         setEntry([...entry])
         setName("")
+        setLastName("")
         setPhone("")
+        setEmail("")
+        setAddress("")
         setNewForm("Before")
     }
     
@@ -116,7 +119,7 @@ export default function AllInOne({add}) {
         <main>
            
           <section>
-            <div className="bg-slate-900 h-[93vh] w-[64.2vw] text-black border-t-2 border-white flex flex-col justify-center items-center">
+            <div className="bg-slate-900 h-[93vh] w-[64.2vw] text-black border-t-2 border-white flex flex-col  items-center">
                 {newForm=="Before"&&
             <InitialPage/>
         }
@@ -253,7 +256,7 @@ export default function AllInOne({add}) {
                       />
                     </svg>
                     <input
-                    value={address} onChange={(e)=>setAdd}
+                    value={address} onChange={(e)=>setAddress(e.target.value)}
                       type="text"
                       placeholder="Address"
                       className="h-[5vh]  w-[38vw] sm:w-[40vw] md:w-[43vw] xl:w-[45vw] font-semibold border-2 border-white bg-slate-900 rounded pl-2 "
